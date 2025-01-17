@@ -15,13 +15,13 @@ def wpm_test(stdscr):
     target_text = "Hello world this is some text for the testing for the app!"
     current_text = []
 
-    stdscr.clear()
-    stdscr.addstr(target_text)
-    stdscr.refresh()
-    stdscr.getkey()
-
     while True:
         key = stdscr.getkey()
+
+        # ordinal value 27 == escape
+        if ord(key) == 27:
+            break
+
         current_text.append(key)
 
         stdscr.clear()
@@ -29,6 +29,8 @@ def wpm_test(stdscr):
 
         for char in current_text:
             stdscr.addstr(char, curses.color_pair(1))
+
+        stdscr.refresh()
 
 
 def main(stdscr):
