@@ -20,6 +20,16 @@ def wpm_test(stdscr):
     stdscr.refresh()
     stdscr.getkey()
 
+    while True:
+        key = stdscr.getkey()
+        current_text.append(key)
+
+        stdscr.clear()
+        stdscr.addstr(target_text)
+
+        for char in current_text:
+            stdscr.addstr(char, curses.color_pair(1))
+
 
 def main(stdscr):
     # int is an id representing the pair / text color / background color

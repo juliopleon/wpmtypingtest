@@ -1,3 +1,7 @@
 {
-  "cSpell.words": ["stdscr"]
+  "cSpell.words": [
+    "addstr",
+    "getkey",
+    "stdscr"
+  ]
 }
