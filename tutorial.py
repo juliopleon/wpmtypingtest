@@ -31,6 +31,7 @@ def wpm_test(stdscr):
     current_text = []
     wpm = 0
     start_time = time.time()
+    stdscr.nodelay(True)
 
     while True:
         time_elapsed = max(time.time() - start_time, 1)
@@ -40,7 +41,13 @@ def wpm_test(stdscr):
         display_text(stdscr, target_text, current_text, wpm)
         stdscr.refresh()
 
-        key = stdscr.getkey()
+        if "".join(current_text) == target_text:
+            stdscr.nodelay(False)
+
+        try:
+            key = stdscr.getkey()
+        except:
+            continue
         # ordinal value 27 == escape
         if ord(key) == 27:
             break
@@ -59,6 +66,9 @@ def main(stdscr):
 
     start_screen(stdscr)
     wpm_test(stdscr)
+
+    stdscr.addstr(2, 0, "You completed the test! Press any key to continue.")
+    stdscr.getkey()
 
 
 wrapper(main)
